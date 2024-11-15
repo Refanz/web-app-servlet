@@ -40,25 +40,89 @@
 
         <%
             List<StudentBean> students = (List<StudentBean>) request.getAttribute("students");
-            List<StudentBean> temp = students.stream().filter((student) -> student.getDepartment().equals("Dep 1")).toList();
-
-            for (int i = 0; i < 4; i++) {
+            List<StudentBean> temp1 = Utils.filterStudentsByDepartment(students, "Dep 1");
+            for (int i = 0; i < temp1.size(); i++) {
         %>
         <tr>
-            <td rowspan="1">
-                <%=(temp.get(i).getDepartment())%>
+            <td>
+                <%
+                    if (i == 0) {
+                        out.print(temp1.get(i).getDepartment());
+                    }
+                %>
             </td>
             <td>
-                <%=(temp.get(i).getStudentId())%>
+                <%=(temp1.get(i).getStudentId())%>
             </td>
             <td>
-                <%=(temp.get(i).getMark())%>
+                <%=(temp1.get(i).getMark())%>
             </td>
             <td>
-                <%=Utils.calculatePass(temp, "Dep 1")%>
+                <%
+                    if (i == 0) {
+                        out.print(Utils.calculatePass(temp1));
+                    }
+                %>
             </td>
         </tr>
         <% } %>
+
+        <%
+            List<StudentBean> temp2 = Utils.filterStudentsByDepartment(students, "Dep 2");
+            for (int i = 0; i < temp2.size(); i++) {
+        %>
+        <tr>
+            <td>
+                <%
+                    if (i == 0) {
+                        out.print(temp2.get(i).getDepartment());
+                    }
+                %>
+            </td>
+            <td>
+                <%=(temp2.get(i).getStudentId())%>
+            </td>
+            <td>
+                <%=(temp2.get(i).getMark())%>
+            </td>
+            <td>
+                <%
+                    if (i == 0) {
+                        out.print(Utils.calculatePass(temp2));
+                    }
+                %>
+            </td>
+        </tr>
+        <% } %>
+
+        <%
+            List<StudentBean> temp3 = Utils.filterStudentsByDepartment(students, "Dep 3");
+            for (int i = 0; i < temp3.size(); i++) {
+        %>
+        <tr>
+            <td>
+                <%
+                    if (i == 0) {
+                        out.print(temp3.get(i).getDepartment());
+                    }
+                %>
+            </td>
+            <td>
+                <%=(temp3.get(i).getStudentId())%>
+            </td>
+            <td>
+                <%=(temp3.get(i).getMark())%>
+            </td>
+            <td>
+                <%
+                    if (i == 0) {
+                        out.print(Utils.calculatePass(temp3));
+                    }
+                %>
+            </td>
+        </tr>
+        <% } %>
+
         <% } %>
     </table>
 </div>

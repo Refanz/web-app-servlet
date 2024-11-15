@@ -23,8 +23,7 @@ public class Utils {
         return rowSpan;
     }
 
-    public static Integer calculatePass(List<StudentBean> students, String department) {
-        int result = 0;
+    public static Integer calculatePass(List<StudentBean> students) {
         int passStudent = 0;
         int totalStudent = students.size();
 
@@ -34,7 +33,11 @@ public class Utils {
             }
         }
 
-        result = (passStudent / totalStudent) * 100;
-        return result;
+
+        return (int) (((double) passStudent / (double) totalStudent) * 100);
+    }
+
+    public static List<StudentBean> filterStudentsByDepartment(List<StudentBean> students, String department) {
+        return students.stream().filter((student) -> student.getDepartment().equals(department)).toList();
     }
 }
